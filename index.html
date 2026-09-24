@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天赐知音儿童合唱团 · Joyful Notes Children's Choir</title>
+<meta name="description" content="Joyful Notes Children's Choir 天赐知音儿童合唱团 — a non-profit children's choir in Calgary, Alberta, founded in 2023 by conductor Shana Yang.">
+<meta property="og:title" content="Joyful Notes Children's Choir 天赐知音儿童合唱团">
+<meta property="og:image" content="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uktc2moguIKtUTbpSOnGKdT9kuKU65GxJ1HT-smYppcb2b9ArDG1YF6ja_-6LzbPKkUoe2QsyPfmUtibb5O3KFM5QGV5FndqU3wxRHraimll1rVMbEUK32tTHmkZadMb_M9DUnrlLVH7H5iurT-dPRFKM5AcT40AlntypGcVE5QavRI2XGmQ-tVn-PqEQ=w1600">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#3B0A0A;--ink2:#5C1010;
+  --gold:#C9963A;--gold-lt:#E8BC6A;--gold-dk:#9B6E20;
+  --cream:#FDF5F0;--parchment:#F5E6E0;
+  --crimson:#8B2635;--muted:#A08080;--border:#D4B8B0;
+  --charcoal:#2C3E50;
+  --nav-h:68px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden}
+
+.cursor-glow{pointer-events:none;position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,150,58,0.06) 0%,transparent 70%);transform:translate(-50%,-50%);z-index:0;top:0;left:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;transition:background 0.4s,box-shadow 0.4s}
+nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(201,150,58,0.2)}
+nav.top{background:transparent}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none;cursor:pointer}
+.nav-logo{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:0.85rem;color:var(--gold);font-weight:700;transition:transform 0.3s}
+.nav-brand:hover .nav-logo{transform:rotate(15deg)}
+.nav-brand-text .zh{font-family:'Noto Serif SC',serif;font-size:1.05rem;color:#fff;font-weight:600;letter-spacing:0.06em;display:block;line-height:1.2}
+.nav-brand-text .en{font-size:0.62rem;color:rgba(255,255,255,0.4);letter-spacing:0.16em;text-transform:uppercase}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;padding:8px 16px;border-radius:4px;transition:color 0.2s,background 0.2s;position:relative;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:16px;right:16px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.25s;transform-origin:left}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{color:var(--gold-lt)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent}
+.hamburger span{display:block;width:22px;height:1.5px;background:#fff;transition:all 0.3s;border-radius:2px}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(10,22,40,0.98);backdrop-filter:blur(20px);padding:1.5rem 5vw 2rem;transform:translateY(-110%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);z-index:999;border-bottom:1px solid rgba(201,150,58,0.2)}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{display:block;color:rgba(255,255,255,0.8);text-decoration:none;font-size:1.1rem;padding:0.9rem 0;border-bottom:1px solid rgba(255,255,255,0.07);letter-spacing:0.06em;transition:color 0.2s,padding 0.2s;cursor:pointer}
+.mobile-menu a:hover{color:var(--gold-lt);padding-left:8px}
+
+.page{display:none}
+.page.active{display:block}
+
+.hero{position:relative;min-height:100vh;background:var(--ink);display:flex;align-items:center;overflow:hidden}
+.hero-canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+.hero-slides{position:absolute;inset:0;z-index:0}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease-in-out}
+.hero-slide.active{opacity:1}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,10,10,0.82) 0%,rgba(59,10,10,0.45) 100%);z-index:1}
+.hero-dots{position:absolute;bottom:5rem;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:3}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.35);border:none;cursor:pointer;padding:0;transition:background 0.3s,transform 0.3s}
+.hero-dot.active{background:var(--gold);transform:scale(1.3)}
+.hero-arrows{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 2rem;z-index:3;pointer-events:none}
+.hero-arrow{background:rgba(0,0,0,0.3);border:1px solid rgba(201,150,58,0.4);color:var(--gold);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;pointer-events:all;transition:background 0.25s,border-color 0.25s}
+.hero-arrow:hover{background:rgba(201,150,58,0.2);border-color:var(--gold)}
+.asl-slide{display:none}.asl-slide.active{display:block}
+.asl-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);border:1px solid rgba(201,150,58,0.5);color:var(--gold);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;z-index:4;transition:background 0.2s}
+.asl-arrow:hover{background:rgba(201,150,58,0.25)}
+.asl-prev{left:12px}
+.asl-next{right:12px}
+.asl-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:4}
+.asl-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;cursor:pointer;padding:0;transition:background 0.3s,transform 0.3s}
+.asl-dot.active{background:var(--gold);transform:scale(1.3)}
+.asl-caption-bar{background:var(--ink);padding:0.9rem 1.5rem;text-align:center}
+.asl-cap{display:none;font-size:0.88rem;color:rgba(255,255,255,0.7);letter-spacing:0.05em}
+.asl-cap.active{display:inline}
+.hero-content{position:relative;z-index:2;padding:0 10vw;max-width:1100px;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:0.7rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;transform:translateY(20px);transition:opacity 0.8s 0.2s,transform 0.8s 0.2s}
+.hero-eyebrow.show{opacity:1;transform:none}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;height:1px;background:var(--gold);width:28px}
+.hero-h1{font-family:'Noto Serif SC',serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.01em;opacity:0;transform:translateY(30px);transition:opacity 0.9s 0.4s,transform 0.9s 0.4s}
+.hero-h1.show{opacity:1;transform:none}
+.hero-h1 .gold{color:var(--gold)}
+.hero-h1 .thin{font-weight:300;color:rgba(255,255,255,0.5);font-size:0.55em;display:block;letter-spacing:0.12em;margin-top:0.3em;font-family:'Inter',sans-serif}
+.hero-desc{font-size:clamp(0.95rem,1.5vw,1.1rem);color:rgba(255,255,255,0.55);max-width:500px;margin-top:1.8rem;line-height:1.8;opacity:0;transform:translateY(20px);transition:opacity 0.8s 0.7s,transform 0.8s 0.7s}
+.hero-desc.show{opacity:1;transform:none}
+.hero-btns{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity 0.8s 0.9s,transform 0.8s 0.9s}
+.hero-btns.show{opacity:1;transform:none}
+.btn-primary{background:var(--gold);color:var(--ink);padding:0.85rem 2.2rem;border-radius:3px;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background 0.25s,transform 0.2s,box-shadow 0.25s;position:relative;overflow:hidden;display:inline-block}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);transform:translateX(-100%);transition:transform 0.35s}
+.btn-primary:hover::before{transform:translateX(0)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,150,58,0.35)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.8);padding:0.85rem 2.2rem;border-radius:3px;font-size:0.82rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:all 0.25s;display:inline-block}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.3);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0;transition:opacity 0.8s 1.4s;cursor:pointer;z-index:2}
+.hero-scroll.show{opacity:1}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(201,150,58,0.6),transparent);animation:scroll-pulse 2s ease-in-out infinite}
+@keyframes scroll-pulse{0%,100%{opacity:0.3;transform:scaleY(0.8)}50%{opacity:1;transform:scaleY(1)}}
+
+.stats-bar{background:var(--gold);padding:2.2rem 10vw;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.stat-item{text-align:center}
+.stat-num{font-family:'Noto Serif SC',serif;font-size:2.2rem;font-weight:900;color:var(--ink);line-height:1}
+.stat-lbl{font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(10,22,40,0.6);margin-top:4px}
+
+.section{padding:7rem 10vw}
+.section-eyebrow{font-size:0.68rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.section-title{font-family:'Noto Serif SC',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;line-height:1.2;margin-bottom:1.5rem}
+.section-title em{font-style:normal;color:var(--gold)}
+
+.about{background:var(--ink2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center}
+.about .section-title{color:#fff}
+.about p{color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.9}
+.about p+p{margin-top:1rem}
+.about-card{background:rgba(255,255,255,0.04);border:1px solid rgba(201,150,58,0.2);border-radius:8px;padding:2.5rem;position:relative;overflow:hidden}
+.about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.about-card .zh-quote{font-family:'Noto Serif SC',serif;font-size:1.4rem;color:rgba(201,150,58,0.8);line-height:1.8;margin-bottom:1.5rem}
+.about-card .attribution{font-size:0.78rem;color:rgba(255,255,255,0.3);letter-spacing:0.12em}
+.about-note{margin-top:1.5rem;padding:1rem 1.2rem;border-left:2px solid var(--gold);background:rgba(201,150,58,0.06);border-radius:0 4px 4px 0;font-size:0.82rem;color:rgba(255,255,255,0.45);font-style:italic}
+
+.info-section{background:var(--parchment)}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:2rem 1.5rem;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden}
+.info-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
+.info-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.1)}
+.info-card:hover::after{transform:scaleX(1)}
+.info-card .ic{font-size:1.8rem;margin-bottom:1rem}
+.info-card .lbl{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.info-card .val{font-size:0.92rem;color:var(--ink);line-height:1.6}
+.info-card a{color:var(--crimson);text-decoration:none;transition:color 0.2s}
+.info-card a:hover{color:var(--gold-dk)}
+
+.parallax-divider{height:260px;background:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.parallax-text{font-family:'Noto Serif SC',serif;font-size:clamp(3rem,8vw,7rem);font-weight:900;color:rgba(255,255,255,0.04);letter-spacing:0.15em;white-space:nowrap;will-change:transform;user-select:none}
+.parallax-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;z-index:2}
+.parallax-center .tag{font-size:0.72rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(201,150,58,0.8)}
+.parallax-center .big{font-family:'Noto Serif SC',serif;font-size:clamp(1.2rem,2.5vw,2rem);color:rgba(255,255,255,0.8);font-weight:600;letter-spacing:0.08em}
+
+.map-section{background:#fff}
+.map-wrap{border-radius:8px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);margin-top:2.5rem;border:1px solid var(--border)}
+.map-wrap iframe{width:100%;height:400px;border:none;display:block}
+
+.social-section{background:var(--ink);padding:6rem 10vw;text-align:center}
+.social-section .section-title{color:#fff}
+.social-section .sub{color:rgba(255,255,255,0.4);margin-bottom:3rem;font-size:0.92rem}
+.social-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.soc-btn{display:flex;align-items:center;gap:10px;padding:1rem 2rem;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s}
+.soc-btn:hover{transform:translateY(-3px)}
+.soc-yt{background:#FF0000;color:#fff;box-shadow:0 4px 16px rgba(255,0,0,0.25)}
+.soc-yt:hover{box-shadow:0 8px 24px rgba(255,0,0,0.4)}
+.soc-xhs{background:#FF2442;color:#fff;box-shadow:0 4px 16px rgba(255,36,66,0.25)}
+.soc-xhs:hover{box-shadow:0 8px 24px rgba(255,36,66,0.4)}
+
+.contact-body{padding:4rem 10vw;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
+.contact-block h3{font-family:'Noto Serif SC',serif;font-size:1.3rem;margin-bottom:1.8rem;padding-bottom:0.8rem;border-bottom:2px solid var(--gold)}
+.c-row{display:flex;gap:1rem;margin-bottom:1.5rem;align-items:flex-start;font-size:0.9rem;color:var(--charcoal)}
+.c-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.c-row strong{display:block;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.c-row a{color:var(--crimson);text-decoration:none}
+.c-row a:hover{text-decoration:underline}
+.join-card{background:var(--parchment);border-radius:8px;padding:2rem;border:1px solid var(--border)}
+.join-card p{font-size:0.9rem;color:var(--charcoal);line-height:1.8}
+.join-card p+p{margin-top:0.8rem}
+.join-card a{color:var(--crimson)}
+footer{background:var(--ink);border-top:1px solid rgba(201,150,58,0.15);padding:3rem 10vw;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem}
+.footer-brand .zh{font-family:'Noto Serif SC',serif;color:var(--gold);font-size:1rem}
+.footer-brand .en{font-size:0.65rem;color:rgba(255,255,255,0.3);letter-spacing:0.14em;text-transform:uppercase;margin-top:2px}
+footer p{color:rgba(255,255,255,0.25);font-size:0.75rem}
+footer a{color:rgba(255,255,255,0.25)}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.visible{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:0s}
+.stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:0.1s}
+.stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:0.2s}
+.stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:0.3s}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .about-grid,.contact-body{grid-template-columns:1fr}
+  .section,.social-section{padding:5rem 6vw}
+  .stats-bar{padding:2rem 6vw;grid-template-columns:repeat(2,1fr)}
+  .photos-body,.contact-body,.members-content{padding:3rem 6vw}
+  .page-header{padding:4rem 6vw 3rem}
+  .map-section{padding-left:6vw;padding-right:6vw}
+  footer{padding:2.5rem 6vw}
+  .login-wrap{padding:3rem 4vw}
+}
+[id]{scroll-margin-top:var(--nav-h)}
+.gallery .asl-slide{position:absolute;inset:0}
+.mobile-menu{transform:translateY(calc(-100% - var(--nav-h)))}
+.mobile-menu.open{transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav id="mainNav" class="top">
+  <a class="nav-brand" href="#top">
+    <div class="nav-logo">♪</div>
+    <div class="nav-brand-text">
+      <span class="zh">天赐知音儿童合唱团</span>
+      <span class="en">Joyful Notes Children's Choir</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#top" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#performances">Performances</a></li>
+    <li><a href="#join">Get Involved</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top" onclick="closeMobile()">Home</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#performances" onclick="closeMobile()">Performances</a>
+  <a href="#join" onclick="closeMobile()">Get Involved</a>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-slides">
+      <div class="hero-slide active" style="background-image:url('https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uktc2moguIKtUTbpSOnGKdT9kuKU65GxJ1HT-smYppcb2b9ArDG1YF6ja_-6LzbPKkUoe2QsyPfmUtibb5O3KFM5QGV5FndqU3wxRHraimll1rVMbEUK32tTHmkZadMb_M9DUnrlLVH7H5iurT-dPRFKM5AcT40AlntypGcVE5QavRI2XGmQ-tVn-PqEQ=w1600')"></div>
+      <div class="hero-slide" style="background-image:url('https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72ucSRQWpgPOLw2r1Lx0P3TRMmjBdz7Rxmca2L7Ph_qFichg95oIUwxXqJaHF_HYdqC_3WwS2VrxO2LgR7BiDRslDz7ES7hdgqOG4JwSogrnv_4rBcDLxMl_Lw-EnHWB7KuA32gy1xSN2n8sZMuWhazgAbwb6BQJ-Vkq2TYYn8_lu0yKDfXiWHHMfI7ymms=w1600')"></div>
+      <div class="hero-slide" style="background-image:url('https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uD81PCN4Pp90Kw7juwnyXSr9Yz8MgVEMfF2DNkWjxnhe2GVR16RsswZlXC9e41tz9mWjDe_lctafnXB3hj3AGvU3tXkoMo8ufVnS-TFDCizpB_LeIeMxWxJuEWDbJAsGDh65Pe-eC7QVKsC2UpIvxYqz2KiW-CkrrIksUS4H3egPc61EbN0JrnyCH1YFw=w1600')"></div>
+      <div class="hero-slide" style="background-image:url('https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tvrU8Y1LdKOMLKMta8pZZ3HOTJvzWuW_TpjymT1yTIe8VLriySkdw9BhFSb_sLObIMh-LJNtd1kHQ2_B_R3s312rXVuhiokuDwDYq1HUSTJ0pac1k2E-CmTF62PUcC-EJNtOZLBpBF9NPGDkHiCYX8oB6foyC8ZwLl5d_kA3DA0eP0aFUFkd5VeCpxrkc=w1600')"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <canvas id="heroCanvas" class="hero-canvas" style="z-index:1"></canvas>
+    <div class="hero-content">
+      <div class="hero-eyebrow" id="he1">Calgary · Est. 2023 · Non-Profit</div>
+      <h1 class="hero-h1" id="he2">
+        天赐<span class="gold">知音</span>
+        <span class="thin">Joyful Notes Children's Choir</span>
+      </h1>
+      <p class="hero-desc" id="he3">天赐知音儿童合唱团<br>Rich musical education and performance opportunities for children and youth in Calgary.</p>
+      <div class="hero-btns" id="he4">
+        <a class="btn-primary" href="https://ce.mtroyal.ca/search/publicCourseSearchDetails.do?method=load&amp;courseId=2118363&amp;selectedProgramAreaId=1023694&amp;selectedProgramStreamId=1031312" target="_blank" rel="noopener">Join 加入我们</a>
+        <a class="btn-ghost" href="mailto:admin@joyfulnotescc.org">✉ Contact Us</a>
+      </div>
+    </div>
+    <div class="hero-dots">
+      <button class="hero-dot active" onclick="heroGoTo(0)" aria-label="Slide 1"></button>
+      <button class="hero-dot" onclick="heroGoTo(1)" aria-label="Slide 2"></button>
+      <button class="hero-dot" onclick="heroGoTo(2)" aria-label="Slide 3"></button>
+      <button class="hero-dot" onclick="heroGoTo(3)" aria-label="Slide 4"></button>
+    </div>
+    <div class="hero-scroll" id="heroScroll" onclick="document.getElementById('statsBar').scrollIntoView({behavior:'smooth'})">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="stats-bar stagger" id="statsBar">
+    <div class="stat-item">
+      <div class="stat-num" data-count="2023">0</div>
+      <div class="stat-lbl">Founded 创立</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">MRU</div>
+      <div class="stat-lbl">Conservatory</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">YYC</div>
+      <div class="stat-lbl">Calgary, Alberta</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">♪</div>
+      <div class="stat-lbl">Weekly Practice 每周排练</div>
+    </div>
+  </div>
+
+  <section class="about section" id="about">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <p class="section-eyebrow">Purpose · 宗旨</p>
+        <h2 class="section-title" style="color:#fff">Joyful Notes <em>Children's Choir</em></h2>
+        <p>Joyful Notes Children’s Choir was founded in June 2023 by conductor Shana Yang in Calgary, Alberta, Canada. This government registered non-profit organization is committed to providing children and youth with rich musical education and performance opportunities, creating a sense of belonging, nurturing personal growth, and ensuring singers experience the benefits of community.</p>
+        <p>The choir’s mandate is to promote multiculturalism in Canada.</p>
+      </div>
+      <div class="reveal-right">
+        <div class="about-card">
+          <p class="zh-quote">天赐知音儿童合唱团</p>
+          <p style="color:rgba(255,255,255,0.55);font-size:0.9rem;line-height:1.8">Musical education · Performance opportunities · A sense of belonging · Personal growth · Community</p>
+          <p class="attribution" style="margin-top:1.5rem">Government-registered non-profit · Calgary, Alberta<br>Founded June 2023 by conductor Shana Yang</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="performances"></div>
+  <section style="background:var(--ink2);padding:5rem 10vw">
+    <p class="section-eyebrow reveal">March 17, 2024</p>
+    <h2 class="section-title reveal" style="color:#fff">Performance at MRU Bella Concert Hall</h2>
+    <div class="reveal gallery" id="gal-perf-mar-2024" style="border-radius:10px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.35)">
+      <div style="position:relative;aspect-ratio:3/2;background:var(--ink)">
+        <div class="asl-slide active"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72ucSRQWpgPOLw2r1Lx0P3TRMmjBdz7Rxmca2L7Ph_qFichg95oIUwxXqJaHF_HYdqC_3WwS2VrxO2LgR7BiDRslDz7ES7hdgqOG4JwSogrnv_4rBcDLxMl_Lw-EnHWB7KuA32gy1xSN2n8sZMuWhazgAbwb6BQJ-Vkq2TYYn8_lu0yKDfXiWHHMfI7ymms=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vz4cGh4YY_Kk1oP3ddc9xIiDw86BTUV6CXRkVQwS3_2dN8YDJ2cL8L2ekrTVnC6AGgsXNxYz-vU1coJcUk62Xr8V8zZ-Kl3sBEwsY_mpKwjOH6ud0z7TPn-n1-UvfmhcZIjcyTEYFrEtWcXQmpAVNFla3fC3rdOatDdaYDmOaDzeBJlDR1FjvHGa5hK2c=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vuZQselQdypM6kysZUl-BhFJhAwKW-WyzmIWWpEn_AjHDf0WE8o_mdvpIOZLjXODyPrkOTkTCXtHxjNv0FGW73CM4X-F6cIAfkGMLUdHzhs1eeXR5n1cvDWNu0bDUs0HI1LzkgFqg4iu9jmojmXcB3XZYV5xQXooBJ7BkNi2DznZ60NE0Y_txnhOj6USo=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tNAOp9BUNax2KC6NSUboGqpqBZiJeqbj7z55RO8HH0p3N-Zi5MzCZvOC338i03KmoclDLvUraNmxN2IfFXUQfmiaJFKtj0-iVDTM4m6uznUV5GxPeWwgsDvBc-C1BKo9e8SZy-efJloOPbZbfz01cyJwIPBcN_VKl4iTwrmYX1UJ794ug5b2UEjqwMZt4=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72t_whl9xMX_1PS7GVBuDqme2TQzZa35k-lkm1gV8dNUDcp8EGKVFkBl1bGjf9uvYz_RskxhZIjDm_ZdGUoDsOGE9ajM3_Ab2cZKTpvLhOR-dHcMDY6hgykedT46p89CjpeBm-Q_7-sgU-LqXp0dKp86CJYjYd3mEdPCXVXm9vrjq0E2f8PJVzrpZyW1=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tfTyCBgM9PGSJighQXyrbbGn_n3QeR9uaO0itQCcHLemXQgGUyzd12kS9CxXtUD5FxQTlNvh7aAynHiAlIi_p-GXRyQNLZvrYYbVmH8zuzpq-9kvhy4cWcJpUlIaPqRebarCvFeRIuo4HNjHK5rmsnEJERqrWYMx203GwtI36UC04bWIzxhtuc7IZL=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 6" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72utG7r1byO1qqXVjrw9wbi-N8Y-faywPxC1Zo4zHuep892now6fb2tZS1iq3nlXHI8ZHg6AmqZLqhcjaIccda2DcHGM1AdQeRua0pPbC0Z8pO723C_F7KdT2eeIjl1huGqZ7iBIQKY6NXHOPhhg8AeYEkbx8kOSREGFOwVRNJUyElRZBok8_1UBQZBO=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 7" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72sMO3pgQy07Y6u05dP25vegY24Uh8iQseisH-ivNWoTFXfJc2IGUwJyU-TrJuJs5KipP_9C_vtqtAUbz-kc17sFiJubu7tLfsjgbRZjApeCh8f-M0a-K_egCGnls6m6eKP0q3NZ7i4PYo-BrU0whiryZE1CvWrZ3NnzHkRauT3JWNei2ac9xb1kRoHYPvs=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 8" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72u82MALLId0U4c6P54T3do38SCttZkTX7gePbO7cOmjYY8QmlNmlu81o3tpQRNmZBEobSziNWPmaAlMlOGK1lng31xviZLOVsGCmYtZz0G1-a0t4abF0YIB1IoY6_Km18l-4iC5kPV5h0FHFdy1bJklKk0wRrqb1FLZrHzimkiWbXeMQsV2Tv6TWsufE3U=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 9" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tETeJinnsH8HpcD7i7OeHRLfvO6XyqVuuq_Ju9IcGHFFhh_ZzIyCBsPDwnA5Guw2ZKdHsZxlhMgfg4WDweHzqj1NV74dJYQD4fO3n8zetfrWIegNlSO0uEFiTxd6TmF2gI3Toq70gbc1ZYcW6bd6OAAQtRXvP8Tu1oGQ2KyZCQocq7XJ5JwY1r3-Os8z4=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 10" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uX875jpHuSXrcz8Bw0XiObqYoLh4Ge_FhH8_9YX77DyHucWBa-PVU3ejyKDa1ADy4EVusTGxuYUcw-xAdk0rn2CHCKWMm4k1APWX1TJiDhj2hcUIHeYbDp9Dw2AdXpcJ5dSnV3NjVCLYbMjphRaKJKjPJzAmqSDDmkqq1Hi2qrWJELiU76SKEOHy8koKQ=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 11" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72t5xwsW6N0KaFnaBNKlE3FX85Dsj2LB_fAW_WAFgoP7tr9bMFQl0UOysWScuLYHd8xKz3x8I1hfRCLXvLMQ7CHhFV2rv_H2N0FRC5vUQHORJlljtMdxctWxTwxLWG8uk4EPtPvCoTkKtksXmFNFp6rRIN2KInSe2-lEmTlK8FfuCu756Nlfso8yPNDRW7c=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 12" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72ukF_ysPQi7ga9X2dXh-LDJLxnMa-mPXw0LDFnW4LP19bNxT-o9LoL-2rpHCG6VK_H2ogU33oYLnOgJlllAESq57XJa8_JVEcy6YOrAPvmRXmlXQV9Ry13XNOcoduU5Afy03kpn_fPZSur_96bmcAxOl031lDpH-_Z-21y_QTOmvVomMnwvTM9hKvo08tM=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 13" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vb65h38q9wNyKfq4nHjCxOvB3ZwWz6KONe6zBv9prJAx6W_sD7lzp7aTGwZuuXTY3E3ej-NWVsfEPtUGJSrcpXP3_xSyvYmAh4sTD2CW5Hsp9oAq2KzZhW75uoXyKiC-G6Sr6Ef8XmvNrdCJUaquwlqnR0zW2Hqmf8A3iSRbD37qYFUymWLAUmzTOPvwI=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 14" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uNpYJta2LGqarMxG8PZ7TPYX_HasroZlpSDq6lRRD_WqTfucrdoA_GeS6rCT_LDnLw4bO_xDe31CyBM1my69BUMuc4ldgcZE2m9iPxXRMcLHFD351SXE6PLyoSD3aRJ23phN1_X4TcCQqnELjYas3_TbhQHI9Y5D9H3_4VdR7Z05vp4mtgbdGY6r34XoQ=w1600" alt="Performance at MRU Bella Concert Hall on March 17, 2024 — photo 15" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <button class="asl-arrow asl-prev" onclick="galStep('perf-mar-2024',-1)" aria-label="Previous">&#8592;</button>
+        <button class="asl-arrow asl-next" onclick="galStep('perf-mar-2024',1)" aria-label="Next">&#8594;</button>
+        <div class="asl-dots">
+          <button class="asl-dot active" onclick="galGoTo('perf-mar-2024',0)" aria-label="Photo 1"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',1)" aria-label="Photo 2"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',2)" aria-label="Photo 3"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',3)" aria-label="Photo 4"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',4)" aria-label="Photo 5"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',5)" aria-label="Photo 6"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',6)" aria-label="Photo 7"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',7)" aria-label="Photo 8"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',8)" aria-label="Photo 9"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',9)" aria-label="Photo 10"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',10)" aria-label="Photo 11"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',11)" aria-label="Photo 12"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',12)" aria-label="Photo 13"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',13)" aria-label="Photo 14"></button>
+          <button class="asl-dot" onclick="galGoTo('perf-mar-2024',14)" aria-label="Photo 15"></button>
+        </div>
+      </div>
+      <div class="asl-caption-bar"><span class="asl-cap active">Performance at MRU Bella Concert Hall on March 17, 2024</span></div>
+    </div>
+  </section>
+  <section style="background:var(--ink);padding:5rem 10vw">
+    <p class="section-eyebrow reveal">February 25, 2024</p>
+    <h2 class="section-title reveal" style="color:#fff">Chinese New Year Gala</h2>
+    <div class="reveal gallery" id="gal-cny-2024" style="border-radius:10px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.35)">
+      <div style="position:relative;aspect-ratio:3/2;background:var(--ink)">
+        <div class="asl-slide active"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uD81PCN4Pp90Kw7juwnyXSr9Yz8MgVEMfF2DNkWjxnhe2GVR16RsswZlXC9e41tz9mWjDe_lctafnXB3hj3AGvU3tXkoMo8ufVnS-TFDCizpB_LeIeMxWxJuEWDbJAsGDh65Pe-eC7QVKsC2UpIvxYqz2KiW-CkrrIksUS4H3egPc61EbN0JrnyCH1YFw=w1600" alt="Chinese New Year Gala at Southern Alberta Jubilee Auditorium on Feb. 25, 2024 — photo 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vLEEKmZBSZ0X-XDekJJ0Q5RH8e0_MQM6rWi1ZA9Lae4wZmHfvpm5V_t2CvtVtpfe-kblvEc0PLbiW6cmOjt5JShBYjZn2J7YXTQY9qwv8mpgqJAZC1SEKgf7kzopch91VCSiNv2jkCt7T3s5F19WB3ru7GREqut7yjGS3trcSpofmlAI2oAdSb3ICpj2c=w1600" alt="Chinese New Year Gala at Southern Alberta Jubilee Auditorium on Feb. 25, 2024 — photo 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <button class="asl-arrow asl-prev" onclick="galStep('cny-2024',-1)" aria-label="Previous">&#8592;</button>
+        <button class="asl-arrow asl-next" onclick="galStep('cny-2024',1)" aria-label="Next">&#8594;</button>
+        <div class="asl-dots">
+          <button class="asl-dot active" onclick="galGoTo('cny-2024',0)" aria-label="Photo 1"></button>
+          <button class="asl-dot" onclick="galGoTo('cny-2024',1)" aria-label="Photo 2"></button>
+        </div>
+      </div>
+      <div class="asl-caption-bar"><span class="asl-cap active">Chinese New Year Gala at Southern Alberta Jubilee Auditorium on Feb. 25, 2024</span></div>
+    </div>
+  </section>
+  <section style="background:var(--ink2);padding:5rem 10vw">
+    <p class="section-eyebrow reveal">December 21, 2023</p>
+    <h2 class="section-title reveal" style="color:#fff">Christmas Concert at MRU Bella Concert Hall</h2>
+    <div class="reveal gallery" id="gal-xmas-2023" style="border-radius:10px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.35)">
+      <div style="position:relative;aspect-ratio:3/2;background:var(--ink)">
+        <div class="asl-slide active"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tvrU8Y1LdKOMLKMta8pZZ3HOTJvzWuW_TpjymT1yTIe8VLriySkdw9BhFSb_sLObIMh-LJNtd1kHQ2_B_R3s312rXVuhiokuDwDYq1HUSTJ0pac1k2E-CmTF62PUcC-EJNtOZLBpBF9NPGDkHiCYX8oB6foyC8ZwLl5d_kA3DA0eP0aFUFkd5VeCpxrkc=w1600" alt="Christmas Concert at MRU Bella Concert Hall on December 21, 2023 — photo 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72ur0M_A1xMk2d9BMSaDRjmyx-InDXXAXNZ_GzXQjJNRppxI8lDavEzign3UEuLfqI890C86AdOOZxJzwx769kl8OoIr7SpDewilzicl5Pw6hivLmBcXvYcuvtLgoaaSFAyCYGFBJnPUxRlqBoj1gR7xADUKMSViPKr2xbQ5WyZXJRIo2iFFgekKD9ZH=w1600" alt="Christmas Concert at MRU Bella Concert Hall on December 21, 2023 — photo 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uWosfmetuaLuXvS1yUpKEJ7EHcMpqHkPjSxl7JrmcyMAIF0ozsWpv8OJU2dxrDjd6Dd1al7vcxASjfAgLhD4QOl7ppeElCXQDpyby8dDDRSUH9ADJRephxy77XfxZmCn6RMEy-ZwPvqaSNc4jwS8SZGz9r2xzxMQVZHNGgE4r-TZp-pqWmgwfWSFqrSxk=w1600" alt="Christmas Concert at MRU Bella Concert Hall on December 21, 2023 — photo 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vMVX9VL60XSvmapwrTwTGYbaIEQgE20Rvtmuh21bY7aAYF4dt9AMSr5odEdLc9uiGU4lIXeRZUNHzyrGMiXo6kT8CpLezPuN331gsn1TDoy_UXWExur0TKvEjdN_4zN-MQVUQW__qi0tK9XIRFSaGwHuZwG5HtigFN12VgU0aLLcyOMPvFhGlEVzKM7Eg=w1600" alt="Christmas Concert at MRU Bella Concert Hall on December 21, 2023 — photo 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uVTbTxvGEdDqBe98tMUhp04ghArOYLN5XoA_CUbLLGLK03ims9JU4tKKhrYf7e_uMrHzeQYoH6FDHmzKD8mg0YYNk0dHDmqh120kYJd7Xn77qDakR-v-l77V-3IkqcTlwIfePQeYYpFFqAua2ggnrMk2OwD6ss3ofzS2AmAjipYkWK0s37apHgm-aGQL4=w1600" alt="Christmas Concert at MRU Bella Concert Hall on December 21, 2023 — photo 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72v0nBvIHlZse88amqdmBOVgG-1zcG_tyaYQCK7zeR8W8D130FaSeF7gXwDPD43zOP5X670kNF7GncWoCsWdgM_BBRhhVP8P0doVJY1VrYhHL95MEgHtAUaECZqMSt_2gXxTdQGrmalUVFNNx25uXaPTW7kYtPhIbWZknb1k0e7n3u6I_4o36MwRPgy8=w1600" alt="Christmas Concert at MRU Bella Concert Hall on December 21, 2023 — photo 6" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <button class="asl-arrow asl-prev" onclick="galStep('xmas-2023',-1)" aria-label="Previous">&#8592;</button>
+        <button class="asl-arrow asl-next" onclick="galStep('xmas-2023',1)" aria-label="Next">&#8594;</button>
+        <div class="asl-dots">
+          <button class="asl-dot active" onclick="galGoTo('xmas-2023',0)" aria-label="Photo 1"></button>
+          <button class="asl-dot" onclick="galGoTo('xmas-2023',1)" aria-label="Photo 2"></button>
+          <button class="asl-dot" onclick="galGoTo('xmas-2023',2)" aria-label="Photo 3"></button>
+          <button class="asl-dot" onclick="galGoTo('xmas-2023',3)" aria-label="Photo 4"></button>
+          <button class="asl-dot" onclick="galGoTo('xmas-2023',4)" aria-label="Photo 5"></button>
+          <button class="asl-dot" onclick="galGoTo('xmas-2023',5)" aria-label="Photo 6"></button>
+        </div>
+      </div>
+      <div class="asl-caption-bar"><span class="asl-cap active">Christmas Concert at MRU Bella Concert Hall on December 21, 2023</span></div>
+    </div>
+  </section>
+  <section style="background:var(--ink);padding:5rem 10vw">
+    <p class="section-eyebrow reveal">Every Week</p>
+    <h2 class="section-title reveal" style="color:#fff">Weekly Practice</h2>
+    <div class="reveal gallery" id="gal-practice" style="border-radius:10px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.35)">
+      <div style="position:relative;aspect-ratio:3/2;background:var(--ink)">
+        <div class="asl-slide active"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tVE5ZHMFDWZ12OxOALviWuRRFIRfvb583OxUTLN1zEAZXtfEhYY9XiO2NzkxIN-mz6isbBN4Z4TgVylilaTGI5CAOOdTMh_bCMLyGyFd3kXjI11X9yzbcc_5oxux1etQAw_RX6DdIFFJmlWYbwB9iJquKgfNlYCk_Ef-2hJvH9dVlry8BuemmY-KgVJCs=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tNrl_Znhj8DUfiFv7FOvc69rE1W0c0JEwMOM7rR_XZUBHbWEemSsMCf8o7NaSbrSnz5M5dxhSKphVCJV5RGj7PSLEjhVtyO0NrolsqoPzIiKuJ2Un44Yq2WjTHNXIDogWrTsBtT_wba1bBrkHhlbhW3vUHG8fwJAAO4Tq9sQ3AT3HN0QItRDm3pUj5-L4=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72upDOJGeXDKz18Qw_qSQ1mrjgNAHGbncPyge1EopdsfgNwO3fac6gbe6Aydj39uAumZqtTqyqo0Q0sOYEh-T0AZ7YG1XXS6Bnw6PsRDL9cyLQ8j5rBTlAUFXZprDAtsI2TDommVscEnM_FVW70laBpUEbqC93nTz8RYbujG1_PBn8zCXSXtSfm_DydaQWs=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72sLfCjc_EdQyCEVTFwW1kdQil99DjHYW33yG7jSnU1aNpIHCiYAdHfUFIgbDKIj-okKdeETb0vmYQJhgG1gvo8gBaPGdzU0FxOD3kYG7jbZoWWBsEHQj6lv2vlb23zR8MO5qsFyg2MkHF6zd-4NN6wHNx_6LcWFfBzKslIXJ7o4O8NfsOTgUDXjImsoRqM=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vA2YBHNXvw-x6kkyXqWVt061beEFqQ6X2oAbS4QznpWxXUzLVOP8LWue0yjfs4svGWjEFnWrDnLmOId0avGXJQWzI7Pi8dIUvKvx878mkx9uoz4bRBbkUvaNTOXEcKQ3Tgl4QwW42Jo8j5HE6TgkQmHPZ3KlcvV6lXToEPYZ7WSgVTFM_pmz4YCaIsDWs=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tQ2n3_jMzAiLrOD2ClfiBYYtxhSoVIbJGvjn97z6QtLcWLTy6hJY67eJa8KV1JtSm9rN50iSMSK1B5BNqEfebTyLK_oap2P_dbrVcHD-Y50T_K50hKFOMRNe8WnCxLXxclO1q7_H412gQINTzs4U_cMLWYWS-ClQnhy2ciQ8a194uOFzzurfdL5qlzzQM=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 6" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tNu9HFXR7blVd7w5vHB_oPYic8Dw_Quk87TvUYO-TMnXXPumRpSW1Z8bzp6pKxCNOGkZpRQvqPXbp07Dg_i55wM_vDzyji7Z7ZQxA_XnxpajS0S3aFXWW4GmTTiU92KcYTDQG0ENgO61aINB77ckev9hewxabZO_TFi_b1EhOR4zP8e4fkfDjfrNL1nOU=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 7" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tWmCTy5xvolAryhsoUNAj_tWMFDdyf1E97JikegUuMDVB4yAjvbzzDbyYGfqnskW6PtGrEXmFfjIEGf3Hu6FpfBQOzqErWdEY5JqRW7W1-0Ny-qdt0djKdgMff55j9TFhRcwwQK_AFJPp8nW6ksEYQDA-Dxu0wUZRKDSY8VONJhb56K4m5pjDynBK5=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 8" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72sgV8j2NiJ3L8wD2KmEw-rkzSTGe3mJi6pxOJilm9OGTEa0lHyqF818jleyxhNzkb5qi0IX-Uw1OE6jvuyW_j9nWzysz49ROv2vJjVEa6ZMmKxX8dYRgtf58yom2RbyhW_yozqFQkLPgx1HpmEFqW3vtwpxKfoTHKAkkBNXgJKGoADyryYlQndCJNdWPv8=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 9" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72sLoAOC4AvjUiFxclF6gayfgZeFIqsnDbF636QWZgDDsgUly0kt7EXxo88vtNGSULbii1Hl-A-0MrMgl0OlBWpkb5D3VTRKJBk4pNt0tkBf5B3FQEknojxJYUifZPhDMXhVI-KbUyDM0Fqa7VgosZShTQoot_cVZL4hOdSIGIioDjflUDE86Ed0CBWL=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 10" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72u7wEkWWBeR0xXDzSs52g1e2hnqpzsYY1Dwo48D8_0zzv41ZAgTNeqU4CxtwxwdLwccJRv3qSpKUNos35E109RKfcZ5M9ZK8j2xYHv7STxDZFhSVZI7OnprCmanX_SShm_CKzIsQ50Jvr6XzsKWIXlHQXVg-B9Jfz84khmxVd4BGw6_PMAzsqwZGRBE8UM=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 11" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72u0YX_MBYvAvW1uhfSJEPQci3UlqVlxAjPuTpNyy0av2vSBayQw0ax5xQNlimmXIJ691U0Y8KMXtn18---7iRc2DI4cDsxcUKz3Vgjgsa5EhHBZ3MNETnxxvA2NdqMdricOeMbS9XVzKD8OgvRAbahRr1LgYzLZIceaSCUj-nCIDfUbpr4htX4WfbuSGCQ=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 12" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tdkG_dUmCDNQOFZSHBs_DflZIJyUolT3p9IQEBRxaHAoGrKBwuHfS7j0pjIRhinvArf5Ox385DeKMmiOnq7T_5D91RKdFOmfsvle75mPSQUqoumxmjlF9IbxizNlRKUxVJYo3yLt05U45o2K2Bt_eFPOgAZW7VmM12TgTMf0NMnfL7yGIHqLzu24H2Tgk=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 13" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vXk25ECQHVM0cQEqKhMCSUFC4S238dHbQ0hekaOVlKBmdbHDmdb0xeYoM-C979Thr6eWZYuu8eRrRC1uLtn2C4xgR2mhmDAvi6RcVma_MtCxT8aF3b5AlqbiDNv4prRV5vX8WKlRunwwsM8BFRYH8ONvTt1_v6ZamwyHMZAXmKOL8naLz8lUWo2t1VKIY=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 14" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uIWwizkM63gt-xJ0jlBIxMerqmQXFIV3ECosV9pJxvPvDRcxz0SiC6mGb2ggkd7MDBpA4c7jo73tiHd3sc2bS40cN3RqyTmdo6x4L4_ou_szE2weixGrXFo-RxeS3H8LdbwCasjf-XAZWaCpezgJ5o7ZcoOMgXtHcETbAwSqDei9UHuZjO2WI-VLP0=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 15" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="asl-slide"><img src="https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uzm15bEF21_n1xnWix7cLfrDfIBNgzHbVwFNnprASLmo6HpkIdQGqv2rmPFPhGXktpZt_azgMjZdk_HTDWq0X5CVcfhwgKoJRvkXIDo4uFBaxFtT8PPv7ob9gSlsKw3Jp9hx5986eHYDzTdKeP_Ye5aXh9SepHTxfGM9XnNtreZjvK1f4Cjvw7Z_ed3UE=w1600" alt="Weekly Practice at Mount Royal University Conservatory — photo 16" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <button class="asl-arrow asl-prev" onclick="galStep('practice',-1)" aria-label="Previous">&#8592;</button>
+        <button class="asl-arrow asl-next" onclick="galStep('practice',1)" aria-label="Next">&#8594;</button>
+        <div class="asl-dots">
+          <button class="asl-dot active" onclick="galGoTo('practice',0)" aria-label="Photo 1"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',1)" aria-label="Photo 2"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',2)" aria-label="Photo 3"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',3)" aria-label="Photo 4"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',4)" aria-label="Photo 5"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',5)" aria-label="Photo 6"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',6)" aria-label="Photo 7"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',7)" aria-label="Photo 8"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',8)" aria-label="Photo 9"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',9)" aria-label="Photo 10"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',10)" aria-label="Photo 11"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',11)" aria-label="Photo 12"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',12)" aria-label="Photo 13"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',13)" aria-label="Photo 14"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',14)" aria-label="Photo 15"></button>
+          <button class="asl-dot" onclick="galGoTo('practice',15)" aria-label="Photo 16"></button>
+        </div>
+      </div>
+      <div class="asl-caption-bar"><span class="asl-cap active">Weekly Practice at Mount Royal University Conservatory</span></div>
+    </div>
+  </section>
+
+  <div class="parallax-divider">
+    <div class="parallax-text" id="parallaxText">天赐知音 · JOYFUL NOTES · 天赐知音 · JOYFUL NOTES · 天赐知音 ·&nbsp;</div>
+    <div class="parallax-center">
+      <span class="tag">Calgary · Since 2023</span>
+      <div class="big">天赐知音儿童合唱团</div>
+      <span class="tag">Joyful Notes Children's Choir</span>
+    </div>
+  </div>
+
+  <section class="info-section section" id="join">
+    <p class="section-eyebrow reveal">Get Involved · 加入我们</p>
+    <h2 class="section-title reveal">Sing with us</h2>
+    <div class="info-grid stagger">
+      <div class="info-card">
+        <div class="ic">🎶</div>
+        <div class="lbl">Join 报名</div>
+        <div class="val">Register through Mount Royal University Conservatory<br><a href="https://ce.mtroyal.ca/search/publicCourseSearchDetails.do?method=load&amp;courseId=2118363&amp;selectedProgramAreaId=1023694&amp;selectedProgramStreamId=1031312" target="_blank" rel="noopener">Join →</a></div>
+      </div>
+      <div class="info-card">
+        <div class="ic">✉️</div>
+        <div class="lbl">Contact Us 联系我们</div>
+        <div class="val"><a href="mailto:admin@joyfulnotescc.org">admin@joyfulnotescc.org</a></div>
+      </div>
+      <div class="info-card">
+        <div class="ic">📍</div>
+        <div class="lbl">Weekly Practice 每周排练</div>
+        <div class="val">Mount Royal University Conservatory<br>Calgary, Alberta</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-section section">
+    <p class="section-eyebrow reveal">Find Us · 排练地点</p>
+    <h2 class="section-title reveal">Mount Royal University Conservatory</h2>
+    <div class="map-wrap reveal">
+      <iframe src="https://maps-api-ssl.google.com/maps?hl=en-US&amp;output=embed&amp;q=Mount+Royal+University+Conservatory,+Calgary,+AB&amp;z=15" allowfullscreen loading="lazy" title="Map of Mount Royal University Conservatory"></iframe>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <div class="zh">天赐知音儿童合唱团</div>
+    <div class="en">Joyful Notes Children's Choir</div>
+  </div>
+  <p>© <span id="year">2026</span> Joyful Notes Children's Choir · Non-profit · Calgary, AB · <a href="mailto:admin@joyfulnotescc.org">admin@joyfulnotescc.org</a></p>
+</footer>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// Cursor glow
+document.addEventListener('mousemove',e=>{
+  const g=document.getElementById('cursorGlow');
+  g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';
+});
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').className=window.scrollY>30?'scrolled':'top';
+},{passive:true});
+
+// Mobile menu
+function toggleMobile(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Gallery slideshows (one per performance)
+const galPos={};
+function galGoTo(id,n){
+  const g=document.getElementById('gal-'+id);
+  const slides=g.querySelectorAll('.asl-slide'),dots=g.querySelectorAll('.asl-dot');
+  const cur=galPos[id]||0;
+  slides[cur].classList.remove('active');dots[cur].classList.remove('active');
+  const next=(n+slides.length)%slides.length;
+  slides[next].classList.add('active');dots[next].classList.add('active');
+  galPos[id]=next;
+}
+function galStep(id,d){galGoTo(id,(galPos[id]||0)+d);}
+setInterval(()=>{
+  document.querySelectorAll('.gallery').forEach(g=>{
+    if(g.querySelectorAll('.asl-slide').length>1)galStep(g.id.slice(4),1);
+  });
+},4500);
+
+// Hero slideshow
+(function(){
+  let cur=0;
+  const slides=document.querySelectorAll('.hero-slide');
+  const dots=document.querySelectorAll('.hero-dot');
+  function goTo(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur=(n+slides.length)%slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+  window.heroGoTo=goTo;
+  setInterval(()=>goTo(cur+1),5000);
+})();
+
+// Hero canvas — floating musical notes
+(function(){
+  const canvas=document.getElementById('heroCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H;
+  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+  const notes=['♩','♪','♫','♬'];
+  const particles=Array.from({length:45},()=>({
+    x:Math.random()*1600,y:Math.random()*900,
+    vx:(Math.random()-0.5)*0.25,vy:-Math.random()*0.35-0.08,
+    size:Math.random()*20+7,
+    opacity:Math.random()*0.14+0.03,
+    char:notes[Math.floor(Math.random()*4)]
+  }));
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      ctx.save();ctx.globalAlpha=p.opacity;
+      ctx.fillStyle='#C9963A';ctx.font=p.size+'px serif';
+      ctx.fillText(p.char,p.x%W,((p.y%H)+H)%H);
+      ctx.restore();
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.y<-30)p.y=H+30;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Hero entrance
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('he1').classList.add('show'),200);
+  setTimeout(()=>document.getElementById('he2').classList.add('show'),420);
+  setTimeout(()=>document.getElementById('he3').classList.add('show'),700);
+  setTimeout(()=>document.getElementById('he4').classList.add('show'),920);
+  setTimeout(()=>document.getElementById('heroScroll').classList.add('show'),1400);
+});
+
+// Animated counter
+function animateCounter(el,target,dur){
+  const start=performance.now();
+  (function update(now){
+    const t=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-t,3);
+    el.textContent=Math.round(ease*target);
+    if(t<1)requestAnimationFrame(update);
+  })(start);
+}
+
+// Scroll reveal + counter trigger
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('[data-count]').forEach(el=>{
+          if(!el.dataset.done){el.dataset.done=1;animateCounter(el,+el.dataset.count,1600);}
+        });
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>obs.observe(el));
+}
+initReveal();
+
+// Active nav link on scroll
+(function(){
+  const links=[...document.querySelectorAll('.nav-links a')];
+  const targets=links.map(a=>document.querySelector(a.getAttribute('href')));
+  window.addEventListener('scroll',()=>{
+    let idx=0;
+    targets.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<window.innerHeight*0.4)idx=i;});
+    links.forEach((a,i)=>a.classList.toggle('active',i===idx));
+  },{passive:true});
+})();
+
+// Parallax scrolling text
+window.addEventListener('scroll',()=>{
+  const pt=document.getElementById('parallaxText');
+  if(pt)pt.style.transform='translateX(-'+(window.scrollY*0.07%50)+'%)';
+},{passive:true});
+</script>
+</body>
+</html>
