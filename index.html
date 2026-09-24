@@ -196,6 +196,15 @@ footer a{color:rgba(255,255,255,0.25)}
 .gallery .asl-slide{position:absolute;inset:0}
 .mobile-menu{transform:translateY(calc(-100% - var(--nav-h)))}
 .mobile-menu.open{transform:translateY(0)}
+.instructors{background:var(--cream)}
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:3rem}
+.inst-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:2rem 1.5rem;text-align:center;transition:transform 0.3s,box-shadow 0.3s}
+.inst-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.1)}
+.inst-photo{width:140px;height:140px;border-radius:50%;margin:0 auto 1.3rem;overflow:hidden;border:2px solid var(--gold);background:var(--ink2);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:2.4rem;font-weight:700;color:var(--gold)}
+.inst-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.inst-card h3{font-family:'Noto Serif SC',serif;font-size:1.2rem;color:var(--ink)}
+.inst-role{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dk);margin-top:4px}
+.stat-num.sm{font-size:1.6rem;line-height:1.4}
 </style>
 </head>
 <body>
@@ -213,6 +222,7 @@ footer a{color:rgba(255,255,255,0.25)}
   <ul class="nav-links">
     <li><a href="#top" class="active">Home</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#instructors">Instructors</a></li>
     <li><a href="#performances">Performances</a></li>
     <li><a href="#join">Get Involved</a></li>
   </ul>
@@ -224,6 +234,7 @@ footer a{color:rgba(255,255,255,0.25)}
 <div class="mobile-menu" id="mobileMenu">
   <a href="#top" onclick="closeMobile()">Home</a>
   <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#instructors" onclick="closeMobile()">Instructors</a>
   <a href="#performances" onclick="closeMobile()">Performances</a>
   <a href="#join" onclick="closeMobile()">Get Involved</a>
 </div>
@@ -268,23 +279,23 @@ footer a{color:rgba(255,255,255,0.25)}
       <div class="stat-lbl">Founded 创立</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">MRU</div>
-      <div class="stat-lbl">Conservatory</div>
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">Instructors 导师</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">YYC</div>
-      <div class="stat-lbl">Calgary, Alberta</div>
+      <div class="stat-num sm">2:45 – 4:45</div>
+      <div class="stat-lbl">PM Rehearsal 排练</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">♪</div>
-      <div class="stat-lbl">Weekly Practice 每周排练</div>
+      <div class="stat-lbl">Every Sunday 每周日</div>
     </div>
   </div>
 
   <section class="about section" id="about">
     <div class="about-grid">
       <div class="reveal-left">
-        <p class="section-eyebrow">Purpose · 宗旨</p>
+        <p class="section-eyebrow">About Us · 关于我们</p>
         <h2 class="section-title" style="color:#fff">Joyful Notes <em>Children's Choir</em></h2>
         <p>Joyful Notes Children’s Choir was founded in June 2023 by conductor Shana Yang in Calgary, Alberta, Canada. This government registered non-profit organization is committed to providing children and youth with rich musical education and performance opportunities, creating a sense of belonging, nurturing personal growth, and ensuring singers experience the benefits of community.</p>
         <p>The choir’s mandate is to promote multiculturalism in Canada.</p>
@@ -295,6 +306,33 @@ footer a{color:rgba(255,255,255,0.25)}
           <p style="color:rgba(255,255,255,0.55);font-size:0.9rem;line-height:1.8">Musical education · Performance opportunities · A sense of belonging · Personal growth · Community</p>
           <p class="attribution" style="margin-top:1.5rem">Government-registered non-profit · Calgary, Alberta<br>Founded June 2023 by conductor Shana Yang</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="instructors section" id="instructors">
+    <p class="section-eyebrow reveal">Our Instructors · 导师团队</p>
+    <h2 class="section-title reveal">Meet our <em>team</em></h2>
+    <div class="inst-grid stagger">
+      <div class="inst-card">
+        <div class="inst-photo">LF</div>
+        <h3>Liz Fu</h3>
+        <div class="inst-role">Instructor</div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-photo">AW</div>
+        <h3>Anna Wu</h3>
+        <div class="inst-role">Instructor</div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-photo">JC</div>
+        <h3>Jame Chen</h3>
+        <div class="inst-role">Pianist</div>
+      </div>
+      <div class="inst-card">
+        <div class="inst-photo">SY</div>
+        <h3>Shana Yang</h3>
+        <div class="inst-role">Conductor</div>
       </div>
     </div>
   </section>
@@ -455,9 +493,14 @@ footer a{color:rgba(255,255,255,0.25)}
         <div class="val"><a href="mailto:admin@joyfulnotescc.org">admin@joyfulnotescc.org</a></div>
       </div>
       <div class="info-card">
+        <div class="ic">📅</div>
+        <div class="lbl">Weekly Rehearsal 每周排练</div>
+        <div class="val">Every Sunday 每周日<br>2:45 PM – 4:45 PM</div>
+      </div>
+      <div class="info-card">
         <div class="ic">📍</div>
-        <div class="lbl">Weekly Practice 每周排练</div>
-        <div class="val">Mount Royal University Conservatory<br>Calgary, Alberta</div>
+        <div class="lbl">Address 地址</div>
+        <div class="val">ED2001, 18 Mt Royal Cir SW<br>Calgary, AB T3E 7N5</div>
       </div>
     </div>
   </section>
@@ -465,8 +508,9 @@ footer a{color:rgba(255,255,255,0.25)}
   <section class="map-section section">
     <p class="section-eyebrow reveal">Find Us · 排练地点</p>
     <h2 class="section-title reveal">Mount Royal University Conservatory</h2>
+    <p class="reveal" style="color:var(--muted);font-size:0.92rem">ED2001, 18 Mt Royal Cir SW, Calgary, AB T3E 7N5 · Sundays 2:45 – 4:45 PM</p>
     <div class="map-wrap reveal">
-      <iframe src="https://maps-api-ssl.google.com/maps?hl=en-US&amp;output=embed&amp;q=Mount+Royal+University+Conservatory,+Calgary,+AB&amp;z=15" allowfullscreen loading="lazy" title="Map of Mount Royal University Conservatory"></iframe>
+      <iframe src="https://maps-api-ssl.google.com/maps?hl=en-US&amp;ll=51.011499,-114.128415&amp;output=embed&amp;q=18+Mt+Royal+Cir+SW,+Calgary,+AB+T3E+7N5,+Canada&amp;z=16" allowfullscreen loading="lazy" title="Map of 18 Mt Royal Cir SW, Calgary"></iframe>
     </div>
   </section>
 </main>
