@@ -1,4 +1,4 @@
-# Joyful Notes Children's Choir · 天赐知音儿童合唱团
+# Joyful Notes Children's Choir · 天赐之音儿童合唱团
 
 Website for Joyful Notes Children's Choir, served by GitHub Pages at https://www.joyfulnotescc.org.
 
