@@ -201,7 +201,12 @@ footer a{color:rgba(255,255,255,0.25)}
 .inst-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:2rem 1.5rem;text-align:center;transition:transform 0.3s,box-shadow 0.3s}
 .inst-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.1)}
 .inst-photo{width:140px;height:140px;border-radius:50%;margin:0 auto 1.3rem;overflow:hidden;border:2px solid var(--gold);background:var(--ink2);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:2.4rem;font-weight:700;color:var(--gold)}
-.inst-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.inst-photo img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
+.rehearsal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem}
+.rehearsal-grid figure{border-radius:10px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.35);background:var(--ink)}
+.rehearsal-grid img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.rehearsal-grid figcaption{padding:0.9rem 1.5rem;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.7);letter-spacing:0.05em}
+@media(max-width:768px){.rehearsal-grid{grid-template-columns:1fr}}
 .inst-card h3{font-family:'Noto Serif SC',serif;font-size:1.2rem;color:var(--ink)}
 .inst-role{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dk);margin-top:4px}
 .stat-num.sm{font-size:1.6rem;line-height:1.4}
@@ -308,6 +313,10 @@ footer a{color:rgba(255,255,255,0.25)}
         </div>
       </div>
     </div>
+    <div class="rehearsal-grid stagger">
+      <figure><img src="images/about/rehearsal-1.jpg" alt="Joyful Notes weekly rehearsal" loading="lazy"><figcaption>Weekly Rehearsal · Sundays 2:45 – 4:45 PM</figcaption></figure>
+      <figure><img src="images/about/rehearsal-2.jpg" alt="Joyful Notes weekly rehearsal" loading="lazy"><figcaption>ED2001, 18 Mt Royal Cir SW, Calgary</figcaption></figure>
+    </div>
   </section>
 
   <section class="instructors section" id="instructors">
@@ -325,7 +334,7 @@ footer a{color:rgba(255,255,255,0.25)}
         <div class="inst-role">Instructor</div>
       </div>
       <div class="inst-card">
-        <div class="inst-photo">JC</div>
+        <div class="inst-photo"><img src="images/instructors/jame-chen.jpg" alt="Jame Chen" loading="lazy"></div>
         <h3>Jame Chen</h3>
         <div class="inst-role">Pianist</div>
       </div>
