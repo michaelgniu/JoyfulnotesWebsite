@@ -197,18 +197,15 @@ footer a{color:rgba(255,255,255,0.25)}
 .mobile-menu{transform:translateY(calc(-100% - var(--nav-h)))}
 .mobile-menu.open{transform:translateY(0)}
 .instructors{background:var(--cream)}
-.inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:3rem}
-.inst-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:2rem 1.5rem;text-align:center;transition:transform 0.3s,box-shadow 0.3s}
-.inst-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.1)}
-.inst-photo{width:140px;height:140px;border-radius:50%;margin:0 auto 1.3rem;overflow:hidden;border:2px solid var(--gold);background:var(--ink2);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:2.4rem;font-weight:700;color:var(--gold)}
-.inst-photo img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:2rem;margin-top:3rem}
+.inst-card{display:block;border-radius:10px;overflow:hidden;background:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,0.18);transition:transform 0.3s,box-shadow 0.3s}
+.inst-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,0.28)}
+.inst-card img{width:100%;height:auto;display:block}
 .rehearsal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem}
 .rehearsal-grid figure{border-radius:10px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.35);background:var(--ink)}
 .rehearsal-grid img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
 .rehearsal-grid figcaption{padding:0.9rem 1.5rem;text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.7);letter-spacing:0.05em}
 @media(max-width:768px){.rehearsal-grid{grid-template-columns:1fr}}
-.inst-card h3{font-family:'Noto Serif SC',serif;font-size:1.2rem;color:var(--ink)}
-.inst-role{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dk);margin-top:4px}
 .stat-num.sm{font-size:1.6rem;line-height:1.4}
 </style>
 </head>
@@ -323,26 +320,10 @@ footer a{color:rgba(255,255,255,0.25)}
     <p class="section-eyebrow reveal">Our Instructors · 导师团队</p>
     <h2 class="section-title reveal">Meet our <em>team</em></h2>
     <div class="inst-grid stagger">
-      <div class="inst-card">
-        <div class="inst-photo"><img src="images/instructors/shana-yang.jpg" alt="Shana Yang" loading="lazy"></div>
-        <h3>Shana Yang</h3>
-        <div class="inst-role">Conductor</div>
-      </div>
-      <div class="inst-card">
-        <div class="inst-photo"><img src="images/instructors/liz-fu.jpg" alt="Liz Fu" loading="lazy"></div>
-        <h3>Liz Fu</h3>
-        <div class="inst-role">Instructor</div>
-      </div>
-      <div class="inst-card">
-        <div class="inst-photo"><img src="images/instructors/anna-wu.jpg" alt="Anna Wu" loading="lazy"></div>
-        <h3>Anna Wu</h3>
-        <div class="inst-role">Instructor</div>
-      </div>
-      <div class="inst-card">
-        <div class="inst-photo"><img src="images/instructors/jame-chen.jpg" alt="Jame Chen" loading="lazy"></div>
-        <h3>Jame Chen</h3>
-        <div class="inst-role">Pianist</div>
-      </div>
+      <a class="inst-card" href="images/instructors/shana-yang.jpg" target="_blank" rel="noopener"><img src="images/instructors/shana-yang.jpg" alt="Shana Yang — Artistic Director &amp; Conductor" loading="lazy"></a>
+      <a class="inst-card" href="images/instructors/liz-fu.jpg" target="_blank" rel="noopener"><img src="images/instructors/liz-fu.jpg" alt="Liz Fu — Vocal Coach" loading="lazy"></a>
+      <a class="inst-card" href="images/instructors/anna-wu.jpg" target="_blank" rel="noopener"><img src="images/instructors/anna-wu.jpg" alt="Ann Wu — Piano Instructor" loading="lazy"></a>
+      <a class="inst-card" href="images/instructors/james-chen.jpg" target="_blank" rel="noopener"><img src="images/instructors/james-chen.jpg" alt="James Chen — Pianist" loading="lazy"></a>
     </div>
   </section>
 
